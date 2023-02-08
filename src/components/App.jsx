@@ -30,10 +30,6 @@ export class App extends Component {
     const nextPage = this.state.currentPage;
 
     if (prevName !== nextName || prevPage !== nextPage) {
-      this.setState({
-        status: FETCH_STATUS.loading,
-      });
-
       this.setState({ status: FETCH_STATUS.loading });
 
       try {
@@ -53,7 +49,7 @@ export class App extends Component {
           }));
 
           if (response.totalHits > 12) {
-            this.state.status = FETCH_STATUS.fullfilled;
+            this.setState({ status: FETCH_STATUS.fullfilled });
           }
         }
         if (response.totalHits === 0) {

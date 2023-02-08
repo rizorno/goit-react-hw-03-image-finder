@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import css from './modal.module.scss';
 
 class Modal extends Component {
@@ -19,6 +20,9 @@ class Modal extends Component {
   };
 
   render() {
+    Loading.pulse({
+      svgColor: 'orange',
+    });
     const template = (
       <div className={css.overlay} onClick={this.closeBtnEscBackdrop}>
         <div className={css.modal}>
@@ -40,6 +44,7 @@ class Modal extends Component {
         </div>
       </div>
     );
+    Loading.remove();
     return createPortal(template, document.getElementById('modal'));
   }
 }
